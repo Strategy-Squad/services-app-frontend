@@ -19,4 +19,6 @@ List<CategoryModel> categoryData = [
   CategoryModel(name: "CarWash", icon: FontAwesomeIcons.car, active: false),
   CategoryModel(
       name: "Electrician", icon: FontAwesomeIcons.bolt, active: false),
+  CategoryModel(name: "Salon", icon: FontAwesomeIcons.cut, active: false),
+  CategoryModel(name: "Salon", icon: FontAwesomeIcons.cut, active: false),
 ];

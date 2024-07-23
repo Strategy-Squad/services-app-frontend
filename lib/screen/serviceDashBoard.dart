@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:service_app_frontend/model/categoryModel.dart';
+import 'package:service_app_frontend/model/homeServiceVerticalSlider.dart';
+import 'package:service_app_frontend/navigationBar/navigation.dart';
 
+// VerticalSliderCardRow Widget
+
+// Servicedashboard Widget
 class Servicedashboard extends StatefulWidget {
   const Servicedashboard({super.key});
 
@@ -10,350 +15,329 @@ class Servicedashboard extends StatefulWidget {
 }
 
 class _ServicedashboardState extends State<Servicedashboard> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: Image.network(
-                              'https://www.nicepng.com/png/full/182-1829287_cammy-lin-ux-designer-circle-picture-profile-girl.png',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Hi, Anna ✋",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                FontAwesomeIcons.locationDot,
-                                color: Colors.blue,
-                              ),
-                              SizedBox(width: 4), // Space between icon and text
-                              Text(
-                                "Panadura, Sri Lanka",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              // Handle the button press
-                              print('Notification icon pressed');
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: Colors.grey),
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Center(
-                                child: FaIcon(
-                                  FontAwesomeIcons.bell,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'How Can help you today?',
-                            prefixIcon: const Icon(Icons.search),
-                            fillColor: Colors.grey[200],
-                            filled: true,
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12.0)),
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 0.0,
-                              horizontal: 16.0,
-                            ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(screenWidth * 0.02),
+                        child: CircleAvatar(
+                          radius: screenWidth * 0.07,
+                          backgroundImage: NetworkImage(
+                            'https://www.nicepng.com/png/full/182-1829287_cammy-lin-ux-designer-circle-picture-profile-girl.png',
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Today Special",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "See All",
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    color: Colors.blue, // Background color of the container
-                    borderRadius: BorderRadius.circular(
-                        10.0), // Border radius of the container
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Row(
+                      Spacer(),
+                      Padding(
+                        padding: EdgeInsets.all(screenWidth * 0.02),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "25% OFF",
-                                    style: TextStyle(
-                                        fontSize: 30,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "Get discount for every order,",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "only valid for today",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                      height:
-                                          8.0), // Add spacing between text and button
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      // Add your button action here
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      foregroundColor: Colors.blue,
-                                      backgroundColor: Colors
-                                          .white, // Text color of the button
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                            20.0), // Border radius of the button
-                                      ),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.0,
-                                          vertical:
-                                              8.0), // Padding inside the button
-                                    ),
-                                    child: Text(
-                                      "Get Discount",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            Text(
+                              "Hi, Hiruni ✋",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: screenWidth * 0.05),
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.locationDot,
+                                  color: Colors.blue,
+                                  size: screenWidth * 0.05,
+                                ),
+                                SizedBox(width: screenWidth * 0.02),
+                                Text(
+                                  "Panadura, Sri Lanka",
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: screenWidth * 0.04),
+                                ),
+                              ],
                             ),
                           ],
                         ),
                       ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.network(
-                              'https://i.ibb.co/61rxQL1/Daco-4431776.png',
-                              width: 100, // Adjust width as needed
-                              height: 150, // Adjust height as needed
+                      Spacer(),
+                      Padding(
+                        padding: EdgeInsets.all(screenWidth * 0.02),
+                        child: InkWell(
+                          onTap: () {
+                            print('Notification icon pressed');
+                          },
+                          child: Container(
+                            width: screenWidth * 0.1,
+                            height: screenWidth * 0.1,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(color: Colors.grey),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.bell,
+                                color: Colors.black,
+                                size: screenWidth * 0.05,
+                              ),
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Service Category",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                            ),
-                          ),
-                        ],
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.02),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'How Can help you today?',
+                        prefixIcon:
+                            Icon(Icons.search, size: screenWidth * 0.05),
+                        fillColor: Colors.grey[200],
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: screenHeight * 0.01,
+                          horizontal: screenWidth * 0.04,
+                        ),
                       ),
                     ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "See All",
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Today Special",
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.05,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
                           ),
-                        ],
-                      ),
+                        ),
+                        Spacer(),
+                        Text(
+                          "See All",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: screenWidth * 0.04,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    const SizedBox(
-                      height: 5,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(screenWidth * 0.02),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                    SizedBox(
-                      height: 80,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: categoryData.length,
-                        itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.only(
-                              right: 20, bottom: 1, top: 1),
-                          child: Column(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Row(
                             children: [
-                              Material(
-                                elevation: 3,
-                                shape: const CircleBorder(),
-                                child: ClipOval(
-                                  child: Container(
-                                    height: 55,
-                                    width: 55,
-                                    decoration: BoxDecoration(
-                                      color: categoryData[index].active
-                                          ? Colors.white
-                                          : Color(0x33336CEE),
-                                      shape: BoxShape.circle,
+                              Padding(
+                                padding: EdgeInsets.all(screenWidth * 0.02),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "25% OFF",
+                                      style: TextStyle(
+                                          fontSize: screenWidth * 0.07,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    child: Center(
-                                      child: Icon(categoryData[index].icon),
+                                    Text(
+                                      "Get discount for every order,",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  ),
+                                    Text(
+                                      "only valid for today",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(height: screenHeight * 0.01),
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        foregroundColor: Colors.blue,
+                                        backgroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                        ),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: screenWidth * 0.04,
+                                            vertical: screenHeight * 0.01),
+                                      ),
+                                      child: Text(
+                                        "Get Discount",
+                                        style: TextStyle(
+                                            fontSize: screenWidth * 0.04,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 1,
-                              ),
-                              Text(
-                                categoryData[index].name,
-                                style: const TextStyle(fontSize: 12),
                               ),
                             ],
                           ),
                         ),
-                      ),
+                        Image.network(
+                          'https://i.ibb.co/61rxQL1/Daco-4431776.png',
+                          width: screenWidth * 0.25,
+                          height: screenHeight * 0.2,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Home Services",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                            ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Service Category",
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.05,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
                           ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "See All",
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        ),
+                        Spacer(),
+                        Text(
+                          "See All",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: screenWidth * 0.04,
                           ),
-                        ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: screenHeight * 0.1,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: categoryData.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: EdgeInsets.only(
+                            right: screenWidth * 0.05,
+                            bottom: screenHeight * 0.01,
+                            top: screenHeight * 0.01),
+                        child: Column(
+                          children: [
+                            Material(
+                              elevation: 3,
+                              shape: const CircleBorder(),
+                              child: ClipOval(
+                                child: Container(
+                                  height: screenWidth * 0.1,
+                                  width: screenWidth * 0.1,
+                                  decoration: BoxDecoration(
+                                    color: categoryData[index].active
+                                        ? Colors.white
+                                        : Color(0x33336CEE),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      categoryData[index].icon,
+                                      size: screenWidth * 0.06,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: screenHeight * 0.01),
+                            Text(
+                              categoryData[index].name,
+                              style: TextStyle(fontSize: screenWidth * 0.03),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Home Services",
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.05,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          "See All",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: screenWidth * 0.04,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: screenHeight * 0.20,
+                    child: VerticalSliderCardRow(),
+                  ),
+                ],
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: DotCurvedBottomNav(
+                  items: [
+                    Icon(Icons.home,
+                        color: Colors.white, size: screenWidth * 0.06),
+                    Icon(Icons.search,
+                        color: Colors.white, size: screenWidth * 0.06),
+                    Icon(Icons.bookmark,
+                        color: Colors.white, size: screenWidth * 0.06),
+                    Icon(Icons.person,
+                        color: Colors.white, size: screenWidth * 0.06),
                   ],
+                  selectedIndex: _selectedIndex,
+                  onTap: (index) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
