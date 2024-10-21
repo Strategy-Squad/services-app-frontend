@@ -17,7 +17,7 @@ class VerticalSliderCardRow extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      height: screenHeight * 0.3, // 40% of screen height
+      height: screenHeight * 0.5, // 40% of screen height
       child: PageView.builder(
         scrollDirection: Axis.vertical,
         itemCount: 5, // Number of cards

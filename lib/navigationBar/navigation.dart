@@ -157,7 +157,7 @@ class _DotCurvedBottomNavState extends State<DotCurvedBottomNav>
                 Positioned(
                   left: 0,
                   right: 0,
-                  top: widget.height * 0.4,
+                  top: widget.height * 0.25,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.end,

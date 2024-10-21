@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:service_app_frontend/model/categoryModel.dart';
 import 'package:service_app_frontend/model/homeServiceVerticalSlider.dart';
-import 'package:service_app_frontend/navigationBar/navigation.dart';
 
-// VerticalSliderCardRow Widget
 
-// Servicedashboard Widget
 class Servicedashboard extends StatefulWidget {
   const Servicedashboard({super.key});
 
@@ -287,7 +284,7 @@ class _ServicedashboardState extends State<Servicedashboard> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.0001),
                     child: Row(
                       children: [
                         Text(
@@ -311,32 +308,12 @@ class _ServicedashboardState extends State<Servicedashboard> {
                     ),
                   ),
                   Container(
-                    height: screenHeight * 0.20,
+                    height: screenHeight * 0.18,
                     child: VerticalSliderCardRow(),
                   ),
                 ],
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: DotCurvedBottomNav(
-                  items: [
-                    Icon(Icons.home,
-                        color: Colors.white, size: screenWidth * 0.06),
-                    Icon(Icons.search,
-                        color: Colors.white, size: screenWidth * 0.06),
-                    Icon(Icons.bookmark,
-                        color: Colors.white, size: screenWidth * 0.06),
-                    Icon(Icons.person,
-                        color: Colors.white, size: screenWidth * 0.06),
-                  ],
-                  selectedIndex: _selectedIndex,
-                  onTap: (index) {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                ),
-              ),
+              
             ],
           ),
         ),
